@@ -1,0 +1,48 @@
+@import "compass/css3";
+@import 'partials/_icomoon';
+
+
+#nav{
+	display: block;
+	padding: 50px;
+	position: relative;
+	clear:float;
+	.circle-logo{
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 15px 10px;
+		font-size: 55px;
+		color: #0d83b4;
+		&:hover{
+			color: #333;
+		}
+	}
+}
+
+//header decoration
+.redBorder,
+.greenBorder,
+.yellowBorder {
+  width: 33.33%;
+  float: left;
+  height: 8px;
+}
+.redBorder {
+  background-color: #16bbff;//#f33e6f;
+}
+.greenBorder {
+  background-color: #11a2de;
+}
+.yellowBorder {
+  background-color: #0d83b4;
+}
+
+.tk-adelle-light{
+	font-weight: 300;
+}
+
+p{
+	font-family: "adelle",serif;
+	font-weight: 300;
+}
