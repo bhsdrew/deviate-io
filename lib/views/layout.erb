@@ -12,13 +12,12 @@
   <%= erb :"partials/_typekit" %>
 </head>
 <body>
-  <div class="redBorder"></div>
-  <div class="greenBorder"></div>
-  <div class="yellowBorder"></div>
-   <%= erb :"partials/_nav" %>
-	
-	<%= yield %>
-	
+  <div id="wrap">
+    <%= erb :"partials/_nav" %>
+	  <%= yield %>
+    
+	</div>
+  <%= erb :"partials/_panel" %>
 
   <script>
   document.write('<script src=' +

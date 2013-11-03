@@ -24,7 +24,8 @@ class Deviate < Sinatra::Application
 	    # The second parameter defines where the compressed version will be served.
 	    # (Note: that parameter is optional, AssetPack will figure it out.)
 	    js :main, '/js/deviate.js', [
-	      '/js/vendor/foundation/foundation.js'
+	      '/js/vendor/foundation/foundation.js',
+	      '/js/main.js'
 	    ]
 
 	    css :main, '/css/deviate.css', [
