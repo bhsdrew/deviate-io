@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=no">
   <title>Andrew Fernandez</title>
   
   <%= css :main %>
@@ -15,7 +15,7 @@
   <div id="wrap">
     <%= erb :"partials/_nav" %>
 	  <%= yield %>
-    
+    <div style="clear:both;"></div>
 	</div>
   <%= erb :"partials/_panel" %>
 
