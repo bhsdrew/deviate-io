@@ -6,8 +6,7 @@ require 'sinatra/assetpack'
 require 'sinatra/support'
 require 'compass'
 require 'minigit'
-require 'git'
-require 'heroku'
+require_relative 'init'
 
 class Deviate < Sinatra::Application
 	 set :root, File.expand_path("../", File.dirname(__FILE__))
@@ -108,6 +107,6 @@ post '/post-receive' do
   "Success!"
 end
 
-require_relative 'lib/init'
+
 
 end
