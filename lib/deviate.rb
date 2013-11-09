@@ -52,9 +52,9 @@ class Deviate < Sinatra::Application
   get '/site' do 
   	ENV['I_AM_HEROKU']
   end
-  
+
   get '/status' do 
-  		if @on_heroku
+  		if !@on_heroku
   			return "LIVE"
   		end
   		MiniGit.fetch
@@ -68,7 +68,7 @@ class Deviate < Sinatra::Application
   end
 
   get '/update' do
-  		if @on_heroku
+  		if !@on_heroku
   			return "LIVE"
   		end
   		update = MiniGit::Capturing.pull
