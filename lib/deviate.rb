@@ -49,6 +49,10 @@ class Deviate < Sinatra::Application
     	erb :index , :layout => :layout
   end
 
+  get '/site' do 
+  	ENV['I_AM_HEROKU']
+  end
+  
   get '/status' do 
   		if @on_heroku
   			return "LIVE"
