@@ -39,6 +39,10 @@ class Deviate < Sinatra::Application
 	    prebuild true 
 	  end
 
+	public
+	def on_heroku?
+  		ENV['I_AM_HEROKU']
+	end
 
 
   get '/' do
@@ -46,8 +50,12 @@ class Deviate < Sinatra::Application
   end
 
   get '/status' do 
+  		if @on_heroku
+  			return "LIVE"
+  		end
   		MiniGit.fetch
 		status = MiniGit::Capturing.branch :v => true
+		print status
 		statuscount = status.scan(/\[([^\]])+\]/).last
 
 		if statuscount 
@@ -56,6 +64,9 @@ class Deviate < Sinatra::Application
   end
 
   get '/update' do
+  		if @on_heroku
+  			return "LIVE"
+  		end
   		update = MiniGit::Capturing.pull
   		update
   end
