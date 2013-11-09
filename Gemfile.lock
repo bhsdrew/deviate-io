@@ -8,8 +8,6 @@ GEM
       sass (~> 3.1)
     execjs (2.0.2)
     fssm (0.2.10)
-    git (1.2.6)
-    git-ssh-wrapper (0.2.0)
     jsmin (1.0.1)
     json (1.8.1)
     kgio (2.8.1)
@@ -46,8 +44,6 @@ PLATFORMS
 
 DEPENDENCIES
   compass
-  git
-  git-ssh-wrapper
   minigit
   sass
   sinatra (= 1.4.4)
