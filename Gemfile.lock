@@ -11,6 +11,7 @@ GEM
     jsmin (1.0.1)
     json (1.8.1)
     kgio (2.8.1)
+    minigit (0.0.4)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
@@ -30,10 +31,10 @@ GEM
     sinatra-support (1.2.2)
       sinatra (>= 1.0)
     tilt (1.4.1)
-    uglifier (2.3.0)
+    uglifier (2.3.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.6.3)
+    unicorn (4.7.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -43,6 +44,7 @@ PLATFORMS
 
 DEPENDENCIES
   compass
+  minigit
   sass
   sinatra (= 1.4.4)
   sinatra-assetpack

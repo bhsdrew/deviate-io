@@ -5,7 +5,7 @@ require "sinatra/base"
 require 'sinatra/assetpack'
 require 'sinatra/support'
 require 'compass'
-
+require 'minigit'
 
 class Deviate < Sinatra::Application
 	 set :root, File.expand_path("../", File.dirname(__FILE__))
@@ -43,6 +43,21 @@ class Deviate < Sinatra::Application
 
   get '/' do
     	erb :index , :layout => :layout
+  end
+
+  get '/status' do 
+  		MiniGit.fetch
+		status = MiniGit::Capturing.branch :v => true
+		statuscount = status.scan(/\[([^\]])+\]/).last
+
+		if statuscount 
+			"Update needed"
+		end
+  end
+
+  get '/update' do
+  		update = MiniGit::Capturing.pull
+  		update
   end
 
 end
