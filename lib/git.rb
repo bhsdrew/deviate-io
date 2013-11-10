@@ -29,14 +29,14 @@ module GitPusher
   end
 
   def wrapped_clone(github_url, local_folder)
-    wrapper = GitSSHWrapper.new(:private_key_path => '~/.ssh/id_rsa')
+    wrapper = GitSSHWrapper.new(:private_key_path => '~/.ssh/deplay_rsa')
     `env #{wrapper.git_ssh} git clone #{github_url} #{local_folder}`
   ensure
     wrapper.unlink
   end
 
   def wrapped_push(repo, remote='heroku', branch='master')
-    wrapper = GitSSHWrapper.new(:private_key_path => '~/.ssh/id_rsa')
+    wrapper = GitSSHWrapper.new(:private_key_path => '~/.ssh/deplay_rsa')
     `cd #{repo.dir}; env #{wrapper.git_ssh} git push -f #{remote} #{branch}`
   ensure
     wrapper.unlink
