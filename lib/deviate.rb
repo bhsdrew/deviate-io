@@ -6,7 +6,11 @@ require 'sinatra/assetpack'
 require 'sinatra/support'
 require 'compass'
 require 'minigit'
+require 'json'
+
 require_relative './routes/deploy-routes'
+require_relative 'heroku'
+require_relative 'git'
 
 class Deviate < Sinatra::Application
 	 set :root, File.expand_path("../", File.dirname(__FILE__))
