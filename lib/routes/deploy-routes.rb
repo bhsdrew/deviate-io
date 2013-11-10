@@ -4,7 +4,7 @@ class Deviate < Sinatra::Application
 	end
 
 	get '/status' do
-	  c = GitPusher.local_state('git@github.com:bhsdrew/deviate-io.git')
+	  c = GitPusher.local_state('ssh://git@github.com/bhsdrew/deviate-io.git')
 	  puts "SHA: #{c.sha} | Date: #{c.date}"
 	  "SHA: #{c.sha} | Date: #{c.date}"
 	end
@@ -16,7 +16,7 @@ class Deviate < Sinatra::Application
 	end
 
 	get '/force-push' do
-	  GitPusher.deploy('git@github.com:bhsdrew/deviate-io.git')
+	  GitPusher.deploy('ssh://git@github.com/bhsdrew/deviate-io.git')
 	  puts "Success!"
 	  "Success!"
 	end
@@ -27,7 +27,7 @@ class Deviate < Sinatra::Application
 	  #   "freak out"
 	  # end
 	  url = data["repository"]["url"]
-	  GitPusher.deploy("git@github.com:bhsdrew/deviate-io.git")
+	  GitPusher.deploy(url)
 	  puts "Success!"
 	end
 end

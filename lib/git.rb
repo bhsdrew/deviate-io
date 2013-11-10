@@ -5,7 +5,7 @@ module GitPusher
   extend self
 
   def deploy(github_url)
-    raise "Incorrect URL Provided #{github_url}" unless github_url == 'git@github.com:bhsdrew/deviate-io.git'
+    raise "Incorrect URL Provided #{github_url}" unless github_url == 'ssh://git@github.com/bhsdrew/deviate-io.git'
     repo = open_or_setup(github_url)
     wrapped_push(repo)
   end
