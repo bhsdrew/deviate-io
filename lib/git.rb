@@ -5,7 +5,7 @@ module GitPusher
   extend self
 
   def deploy(github_url)
-    raise "Incorrect URL Provided #{github_url}" unless github_url == 'https://github.com/bhsdrew/deviate-io'
+    raise "Incorrect URL Provided #{github_url}" unless github_url == 'git@github.com:bhsdrew/deviate-io.git'
     repo = open_or_setup(github_url)
     wrapped_push(repo)
   end
@@ -29,14 +29,14 @@ module GitPusher
   end
 
   def wrapped_clone(github_url, local_folder)
-    wrapper = GitSSHWrapper.new(:private_key_path => '~/.ssh/deplay_rsa')
+    wrapper = GitSSHWrapper.new(:private_key => ENV['DEPLAY_SSH_KEY'])
     `env #{wrapper.git_ssh} git clone #{github_url} #{local_folder}`
   ensure
     wrapper.unlink
   end
 
   def wrapped_push(repo, remote='heroku', branch='master')
-    wrapper = GitSSHWrapper.new(:private_key_path => '~/.ssh/deplay_rsa')
+    wrapper = GitSSHWrapper.new(:private_key => ENV['DEPLAY_SSH_KEY'])
     `cd #{repo.dir}; env #{wrapper.git_ssh} git push -f #{remote} #{branch}`
   ensure
     wrapper.unlink
