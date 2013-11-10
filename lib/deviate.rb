@@ -7,11 +7,8 @@ require 'sinatra/support'
 require 'compass'
 require 'minigit'
 require 'json'
-require 'heroku'
-require 'heroku/command'
 
 require_relative './routes/deploy-routes'
-require_relative 'heroku'
 require_relative 'git'
 
 class Deviate < Sinatra::Application
