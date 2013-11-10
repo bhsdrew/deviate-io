@@ -5,11 +5,6 @@ require "sinatra/base"
 require 'sinatra/assetpack'
 require 'sinatra/support'
 require 'compass'
-require 'minigit'
-require 'json'
-
-require_relative './routes/deploy-routes'
-require_relative 'git'
 
 class Deviate < Sinatra::Application
 	 set :root, File.expand_path("../", File.dirname(__FILE__))
@@ -55,28 +50,6 @@ class Deviate < Sinatra::Application
 
   get '/site' do 
   	ENV['I_AM_HEROKU']
-  end
-
-  get '/status' do 
-  		if @on_heroku
-  			return "LIVE"
-  		end
-  		MiniGit.fetch
-		status = MiniGit::Capturing.branch :v => true
-		print status
-		statuscount = status.scan(/\[([^\]])+\]/).last
-
-		if statuscount 
-			"Update needed"
-		end
-  end
-
-  get '/update' do
-  		if @on_heroku
-  			return "LIVE"
-  		end
-  		update = MiniGit::Capturing.pull
-  		update
   end
 
 end
