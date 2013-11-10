@@ -6,6 +6,7 @@ require 'sinatra/assetpack'
 require 'sinatra/support'
 require 'compass'
 require 'minigit'
+require_relative './routes/deploy-routes'
 
 class Deviate < Sinatra::Application
 	 set :root, File.expand_path("../", File.dirname(__FILE__))
@@ -54,7 +55,7 @@ class Deviate < Sinatra::Application
   end
 
   get '/status' do 
-  		if !@on_heroku
+  		if @on_heroku
   			return "LIVE"
   		end
   		MiniGit.fetch
@@ -68,7 +69,7 @@ class Deviate < Sinatra::Application
   end
 
   get '/update' do
-  		if !@on_heroku
+  		if @on_heroku
   			return "LIVE"
   		end
   		update = MiniGit::Capturing.pull
