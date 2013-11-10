@@ -1,25 +1,42 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.3.5)
     chunky_png (1.2.9)
     compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    excon (0.25.3)
     execjs (2.0.2)
     fssm (0.2.10)
     git (1.2.6)
     git-ssh-wrapper (0.2.0)
+    heroku (3.0.1)
+      heroku-api (~> 0.3.7)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.7)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.3.15)
+      excon (~> 0.25.1)
     jsmin (1.0.1)
     json (1.8.1)
     kgio (2.8.1)
+    launchy (2.3.0)
+      addressable (~> 2.3)
+    mime-types (2.0)
     minigit (0.0.4)
+    netrc (0.7.7)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
     raindrops (0.12.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    rubyzip (1.1.0)
     sass (3.2.12)
     sinatra (1.4.4)
       rack (~> 1.4)
@@ -48,6 +65,7 @@ DEPENDENCIES
   compass
   git
   git-ssh-wrapper
+  heroku
   minigit
   sass
   sinatra (= 1.4.4)
