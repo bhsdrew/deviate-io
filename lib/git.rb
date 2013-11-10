@@ -31,15 +31,11 @@ module GitPusher
   def wrapped_clone(github_url, local_folder)
     wrapper = GitSSHWrapper.new(:private_key => ENV['DEPLAY_SSH_KEY'])
     `env #{wrapper.git_ssh} git clone #{github_url} #{local_folder}`
-  ensure
-    wrapper.unlink
   end
 
   def wrapped_push(repo, remote='heroku', branch='master')
     wrapper = GitSSHWrapper.new(:private_key => ENV['DEPLAY_SSH_KEY'])
     `cd #{repo.dir}; env #{wrapper.git_ssh} git push -f #{remote} #{branch}`
-  ensure
-    wrapper.unlink
   end
 
   def local_state(github_url)
