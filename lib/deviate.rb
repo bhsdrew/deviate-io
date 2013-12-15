@@ -45,7 +45,14 @@ class Deviate < Sinatra::Application
   		ENV['I_AM_HEROKU']
 	end
 
+	@@allposts = []
+	Dir.glob("posts/*/*/*.json") do |postconfig| # note one extra "*"
+	  	@@allposts.push(postconfig)
+	end
 
+	puts @@allposts
+	
+	#single post route
 	get '/post/:year/:month/:slug' do
 		config = File.read("posts/#{params[:year]}/#{params[:month]}/#{params[:slug]}.json")
 		content = File.read("posts/#{params[:year]}/#{params[:month]}/#{params[:slug]}.markdown")
@@ -56,6 +63,14 @@ class Deviate < Sinatra::Application
 		erb :post , :layout => :layout, locals: post
 	end
 
+	#helper route for listing out all articles
+	get '/archive' do
+
+		content = {:content => @@allposts}
+		erb :archive, :layout => :layout, locals: content
+	end
+
+	#home route
 	get '/' do
 		config = {:title => "Self deploying blog"}
 		erb :index , :layout => :layout, locals: config
