@@ -15,5 +15,10 @@ describe 'Deviate.io App' do
 		get '/'
 		last_response.status.should be(200)
 	end
+
+	it "should GET '/post/2013/12/style-guide" do
+		get '/post/2013/12/style-guide'
+		last_response.status.should be(200)
+	end
 	
 end
