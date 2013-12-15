@@ -5,10 +5,10 @@
 <head>
 	<meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=no">
-  <title>Andrew Fernandez</title>
+  <title>Andrew Fernandez<% if defined?(title) %> - <%= title %> <% end %></title>
   
   <%= css :main %>
-  <script src="js/vendor/custom.modernizr.js"></script>
+  <script src="/js/vendor/custom.modernizr.js"></script>
   <%= erb :"partials/_typekit" %>
 </head>
 <body>
@@ -21,7 +21,7 @@
 
   <script>
   document.write('<script src=' +
-  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  ('__proto__' in {} ? '/js/vendor/zepto' : '/js/vendor/jquery') +
   '.js><\/script>')
   </script>
   

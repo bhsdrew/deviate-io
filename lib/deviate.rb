@@ -5,6 +5,8 @@ require "sinatra/base"
 require 'sinatra/assetpack'
 require 'sinatra/support'
 require 'compass'
+require 'json'
+require 'rdiscount'
 
 class Deviate < Sinatra::Application
 	 set :root, File.expand_path("../", File.dirname(__FILE__))
@@ -44,12 +46,23 @@ class Deviate < Sinatra::Application
 	end
 
 
-  get '/' do
-    	erb :index , :layout => :layout
-  end
+	get '/post/:year/:month/:slug' do
+		config = File.read("posts/#{params[:year]}/#{params[:month]}/#{params[:slug]}.json")
+		content = File.read("posts/#{params[:year]}/#{params[:month]}/#{params[:slug]}.markdown")
+		post = {
+			:post => JSON.parse(config),
+			:content => RDiscount.new(content).to_html
+		}
+		erb :post , :layout => :layout, locals: post
+	end
 
-  get '/site' do 
-  	ENV['I_AM_HEROKU']
-  end
+	get '/' do
+		config = {:title => "Self deploying blog"}
+		erb :index , :layout => :layout, locals: config
+	end
+
+	get '/site' do 
+		ENV['I_AM_HEROKU']
+	end
 
 end
