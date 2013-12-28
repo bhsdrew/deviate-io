@@ -27,6 +27,8 @@ class Deviate < Sinatra::Application
 	    js :main, '/js/deviate.js', [
 	      '/js/vendor/foundation/foundation.js',
 	      '/js/vendor/bigfoot.js',
+        '/js/vendor/rainbow.js',
+        '/js/vendor/language/*',
 	      '/js/main.js'
 	    ]
 
@@ -34,7 +36,8 @@ class Deviate < Sinatra::Application
 	      '/css/normalize.css',
 	      '/css/foundation.css',
 	      '/css/main.css',
-	      '/css/footnote-button.css'
+	      '/css/footnote-button.css',
+        '/css/themes/solarized-light.css'
 	    ]
 
 	    js_compression  :uglify    # :jsmin | :yui | :closure | :uglify
@@ -85,7 +88,7 @@ class Deviate < Sinatra::Application
 		}
 		config = {:title => "Self deploying blog",
 				  :recentPost => post}
-    
+
 		erb :index , :layout => :layout, locals: config
 	end
 
