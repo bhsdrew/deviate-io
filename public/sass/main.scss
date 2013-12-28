@@ -1,8 +1,10 @@
 @import "compass/css3";
 @import "compass/css3/transition";
+@import "compass/css3/transform";
 @import 'partials/_icomoon';
 
-
+$bluecolor: #0d83b4;
+$twitterblue: #11a2de;
 
 html{
 	height: 100%;
@@ -22,47 +24,53 @@ p{
 }
 
 //move to nav
-
 #nav{
 	display: block;
-	padding: 50px;
+	padding: 0;
+	margin-bottom:20px;
 	clear:left;
+	border-bottom: 1px solid #eee;
 	.circle-logo{
-		position: fixed;
+		position: relative;
 		top: 0;
 		left: 0;
 		padding: 15px 10px;
-		font-size: 55px;
-		color: #0d83b4;
+		font-size: 44px;
+		color: $bluecolor;
 		z-index: 5;
 		cursor: pointer;
 		opacity: 1;
-		@include transition-property(color);
+			@include transition-property(color);
   			@include transition-duration(.2s);
   			@include transition-timing-function(ease-in); 
+  			@include transition-property(transform);
+  			@include rotate(0deg);
 		&:hover{
 			opacity: .8;
 		}
 		&.open{
-			color: #fff;
-			
+			color: #000;
 			@include transition-property(color);
   			@include transition-duration(.2s);
-  			@include transition-timing-function(ease-in); 
+  			@include transition-timing-function(ease-in);
+  			
+  			@include transition-property(transform); 
+  			@include rotate(90deg); 
 		}
 	}
 }
 
 //back-menu 
 #back-panel{
-	width:200px;
+	width:100%;
 	position: absolute;
 	top:0;
 	left: 0;
 	z-index: 1;
-	height: 100%;
+	height: 100px;
 	padding: 100px 0 ;
 	background-color: rgba(0, 0, 0, 0.2);
+	background: #000 no-repeat center;
 	ul{
 		color: #fff;
 	}
@@ -93,11 +101,11 @@ p{
 	min-height: 100%;
     height: auto !important;
     height: 100%;
-	@include transition-property(left);
+	@include transition-property(top);
   	@include transition-duration(.2s);
   	@include transition-timing-function(ease-in); 
   	&.open{
-  		left:200px;
+  		top:100px;
   	}
 }
 
@@ -107,7 +115,7 @@ p{
 .yellowBorder {
   width: 33.33%;
   float: left;
-  height: 8px;
+  height: 4px;
 }
 .redBorder {
   background-color: #16bbff;//#f33e6f;
@@ -119,6 +127,12 @@ p{
   background-color: #0d83b4;
 }
 
+.home-link{
+	padding: 10px 0px;
+	a{
+		color: #333;
+	}
+}
 
 .social{
 	position: absolute;
@@ -130,7 +144,7 @@ p{
 
 	.twitter-style{
 		@include border-radius(2px, 2px);
-		background: #11a2de;
+		background: $twitterblue;
 		padding:0 15px;
 		display: inline-block;
 		position: relative;
@@ -150,5 +164,11 @@ p{
 		border-bottom: 1px solid rgba(0,0,0,0.1);
 		vertical-align: bottom;
 		text-rendering: optimizeLegibility; 
+	}
+}
+
+.footnote{
+	p{
+		font-size:24px;
 	}
 }

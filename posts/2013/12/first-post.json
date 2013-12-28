@@ -1,0 +1,10 @@
+{    
+        "title": "First Post",
+        "date": "December 28th, 2013",
+        "pubdate" : 20131228,
+        "year" : 2013,
+        "month" :12,
+        "day": 28,
+        "author": "Andrew Fernandez",
+        "slug": "first-post"
+}

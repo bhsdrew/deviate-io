@@ -1,9 +1,29 @@
-<div class="row" style="display:block;position:relative;">
+<div class="row intro-section" style="display:block;position:relative;">
 	<div class="large-10 large-offset-1 columns">
-		<h1 class="tk-adelle text-center">Andrew Fernandez</h1>
-		<h4 class="tk-adelle tk-adelle-light text-center">&#8220;I don't want to be rescued. My fellow Earthicans, as I have explained in my book 'Earth in the Balance'', and the much more popular ''Harry Potter and the Balance of Earth', we need to defend our planet against pollution. Also dark wizards. Can I use the gun? &#8221;</h4>
+		<h3 class="tk-adelle text-center">Hi, Internet</h3>
+		<h5 class="tk-adelle tk-adelle-light text-left">I'm <b>Andrew</b><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>nice to meet you. I'm an <b>Mobile</b><sup id="fnref:1"><a href="#fn:2" rel="footnote">2</a></sup> enthusiast and developer for <A href="http://renttherunway.com">Rent the Runway</a>, but I've done other apps too like <a href="http://diapers.com">Diapers.com</a> and <a href="http://renewedapp.com">Renewed</a>. I like to build things that are easy to use and useful. This is a custom self deploying blog inspired by jekyll.</h5>
 
-		<h6 class="tk-adelle text-center">You can follow me on <a href="http://twitter.com/bhsdrew">Twitter</a> and <a href="http://github.com/bhsdrew">Github</a></h6>
+		<h5 class="tk-adelle text-left">You can follow me on <a href="http://twitter.com/bhsdrew">Twitter</a> and <a href="http://github.com/bhsdrew">Github</a> on @bhsdrew</h5>
+<br/><br/><br/>
 		<hr />
 	</div>
 </div>
+
+
+<div class="row first-post" style="display:block;position:relative;">
+	<div class="large-10 large-offset-1 columns">
+		<h1 class="tk-adelle text-left"><a href="/post/<%= recentPost[:post]["year"] %>/<%= recentPost[:post]["month"] %>/<%= recentPost[:post]["slug"] %>"><%= recentPost[:post]["title"] %></a></h1>
+		<h6 class="tk-adelle text-left"><%= recentPost[:post]["date"] %> - by <%= recentPost[:post]["author"] %> </h6>
+		<div cass="text-body"><%= recentPost[:content] %></div>
+	</div>
+</div>
+
+
+<div class="footnotes"><ol>
+    <li class="footnote" id="fn:1">
+        <p class="footnote">Yep, that's me Andrew Fernandez I'm from New Jersey if that matters.<a href="#fnref:1" title="return to article"> ↩</a><p>
+    </li>
+    <li class="footnote" id="fn:2">
+        <p class="footnote">Mobile as in Apps, Mobile Web, Tablets, and anyother new shiny thing that can go with you places and compute.<a href="#fnref:1" title="return to article"> ↩</a><p>
+    </li>
+</ol></div>

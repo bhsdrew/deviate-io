@@ -26,13 +26,15 @@ class Deviate < Sinatra::Application
 	    # (Note: that parameter is optional, AssetPack will figure it out.)
 	    js :main, '/js/deviate.js', [
 	      '/js/vendor/foundation/foundation.js',
+	      '/js/vendor/bigfoot.js',
 	      '/js/main.js'
 	    ]
 
 	    css :main, '/css/deviate.css', [
 	      '/css/normalize.css',
 	      '/css/foundation.css',
-	      '/css/main.css'
+	      '/css/main.css',
+	      '/css/footnote-button.css'
 	    ]
 
 	    js_compression  :uglify    # :jsmin | :yui | :closure | :uglify
@@ -45,12 +47,15 @@ class Deviate < Sinatra::Application
   		ENV['I_AM_HEROKU']
 	end
 
-	@@allposts = []
+	allposts = []
 	Dir.glob("posts/*/*/*.json") do |postconfig| # note one extra "*"
-	  	@@allposts.push(postconfig)
+	  	allposts.push(postconfig)
 	end
+	@@thePosts = Array.new()
+	for post in allposts
+		@@thePosts.push(JSON.parse(File.read(post)))
 
-	puts @@allposts
+	end
 	
 	#single post route
 	get '/post/:year/:month/:slug' do
@@ -65,14 +70,22 @@ class Deviate < Sinatra::Application
 
 	#helper route for listing out all articles
 	get '/archive' do
-
-		content = {:content => @@allposts}
+		sorted = @@thePosts.sort_by { |k| k["pubdate"] }.reverse
+		content = {:posts => sorted}
 		erb :archive, :layout => :layout, locals: content
 	end
 
 	#home route
 	get '/' do
-		config = {:title => "Self deploying blog"}
+		sorted = @@thePosts.sort_by { |k| k["pubdate"] }.reverse
+		content = File.read("posts/#{sorted[0]['year']}/#{sorted[0]['month']}/#{sorted[0]['slug']}.markdown")
+		post = {
+			:post => sorted[0],
+			:content => RDiscount.new(content).to_html
+		}
+		config = {:title => "Self deploying blog",
+				  :recentPost => post}
+    
 		erb :index , :layout => :layout, locals: config
 	end
 
