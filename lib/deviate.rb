@@ -29,7 +29,7 @@ class Deviate < Sinatra::Application
 	      '/js/vendor/foundation/foundation.js',
 	      '/js/vendor/bigfoot.js',
         '/js/vendor/rainbow.js',
-        '/js/vendor/language/*',
+        #'/js/vendor/language/*',
 	      '/js/main.js'
 	    ]
 
