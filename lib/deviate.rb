@@ -20,6 +20,7 @@ class Deviate < Sinatra::Application
 	  assets do
 	    serve '/js',     from: 'public/js'        # Default
 	    serve '/css',    from: 'public/sass'       # Default
+	    serve '/css/themes',    from: 'public/sass/themes'       # Default
 	    serve '/images', from: 'public/images'    # Default
 	    serve '/fonts', from: 'public/fonts'    # Default
 
@@ -29,7 +30,7 @@ class Deviate < Sinatra::Application
 	      '/js/vendor/foundation/foundation.js',
 	      '/js/vendor/bigfoot.js',
         '/js/vendor/rainbow.js',
-        #'/js/vendor/language/*',
+        '/js/vendor/language/*',
 	      '/js/main.js'
 	    ]
 
