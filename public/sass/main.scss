@@ -1,10 +1,22 @@
 @import "compass/css3";
 @import "compass/css3/transition";
 @import "compass/css3/transform";
-@import 'partials/_icomoon';
+@import 'partials/_fonts';
 
 $bluecolor: #0d83b4;
 $twitterblue: #11a2de;
+$lightblue : #0d83b4;
+$midblue : #6C808C;
+$darkblue : #BAC4C9;
+
+$sitebackground: #f9f9f9;
+$lightwhite: #e8e8e8;
+
+$break-small : 320px;
+$break-mid : 720px;
+
+$mainfont : "adelle",serif;
+
 
 html{
 	height: 100%;
@@ -18,9 +30,21 @@ p{
 	font-weight: 100;
 }
 
+a{
+	color: $lightblue;
+
+	&:hover{
+		color: $darkblue;
+	}
+}
+
 //move to fonts
 .tk-adelle-light{
 	font-weight: 100;
+}
+
+.entypo {
+	font-family: "entypo";
 }
 
 //move to nav
@@ -68,11 +92,36 @@ p{
 	left: 0;
 	z-index: 1;
 	height: 100px;
-	padding: 100px 0 ;
+	padding: 0 0 ;
 	background-color: rgba(0, 0, 0, 0.2);
-	background: #000 no-repeat center;
+	background: #222 no-repeat center;
 	ul{
 		color: #fff;
+	}
+	a{
+		font-family: $mainfont;
+		font-size: 20px;
+		@media screen and (max-width: $break-mid) {
+    		font-size: 18px;
+  		}
+		
+		@media screen and (max-width: $break-small) {
+    		font-size: 15px;
+  		}
+		
+		color:$lightwhite;
+		font-weight: 100;
+		span{
+			font-size: 90px;
+			@media screen and (max-width: $break-mid) {
+    			font-size: 70px;
+  			}
+			@media screen and (max-width: $break-small) {
+    			font-size: 50px;
+	  		}
+	  		
+			color: $lightwhite;
+		}
 	}
 }
 
@@ -97,7 +146,7 @@ p{
 	z-index: 2;
 	width:100%;
 	min-width:100%;
-	background: #fff;
+	background: $sitebackground;
 	min-height: 100%;
     height: auto !important;
     height: 100%;
@@ -117,14 +166,16 @@ p{
   float: left;
   height: 4px;
 }
+
+
 .redBorder {
-  background-color: #16bbff;//#f33e6f;
+  background-color: $lightblue;
 }
 .greenBorder {
-  background-color: #11a2de;
+  background-color: $midblue;
 }
 .yellowBorder {
-  background-color: #0d83b4;
+  background-color: $darkblue;
 }
 
 .home-link{
@@ -166,6 +217,7 @@ p{
 		text-rendering: optimizeLegibility; 
 	}
 }
+
 
 .footnotes{
 	display: none;

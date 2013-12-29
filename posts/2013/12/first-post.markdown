@@ -1,7 +1,4 @@
-Oh hey there I didn't see you. This is my first post.
-
-This is a paragraph, which is text surrounded by whitespace. Paragraphs can be on one 
-line (or many), and can drone on for hours.  
+So one weekend I decided to learn Ruby and make a blogging engine. Meet Deviate my ruby self deploying blogging engine.
 
 Here is a Markdown link to [Warped](http://warpedvisions.org), and a literal. 
 

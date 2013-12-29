@@ -9,9 +9,14 @@ GEM
     diff-lcs (1.2.5)
     execjs (2.0.2)
     fssm (0.2.10)
+    html_truncator (0.3.1)
+      nokogiri (~> 1.5)
     jsmin (1.0.1)
     json (1.8.1)
     kgio (2.8.1)
+    mini_portile (0.5.2)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
@@ -53,6 +58,7 @@ PLATFORMS
 
 DEPENDENCIES
   compass
+  html_truncator (~> 0.2)
   json
   rdiscount
   rspec

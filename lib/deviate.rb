@@ -7,6 +7,7 @@ require 'sinatra/support'
 require 'compass'
 require 'json'
 require 'rdiscount'
+require "html_truncator"
 
 class Deviate < Sinatra::Application
 	 set :root, File.expand_path("../", File.dirname(__FILE__))
@@ -84,12 +85,20 @@ class Deviate < Sinatra::Application
 		content = File.read("posts/#{sorted[0]['year']}/#{sorted[0]['month']}/#{sorted[0]['slug']}.markdown")
 		post = {
 			:post => sorted[0],
-			:content => RDiscount.new(content).to_html
+			:content => HTML_Truncator.truncate(RDiscount.new(content).to_html,50)
 		}
 		config = {:title => "Self deploying blog",
 				  :recentPost => post}
 
 		erb :index , :layout => :layout, locals: config
+	end
+
+	get '/projects' do
+		erb :projects, :layout => :layout
+	end
+
+	get '/me' do
+		erb :about, :layout => :layout
 	end
 
 	get '/site' do 

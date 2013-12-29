@@ -11,3 +11,4 @@ gem 'uglifier'
 gem 'rspec'
 gem 'rdiscount'
 gem 'json'
+gem "html_truncator", "~>0.2"
