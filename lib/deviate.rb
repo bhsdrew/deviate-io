@@ -13,6 +13,7 @@ class Deviate < Sinatra::Application
 	 set :root, File.expand_path("../", File.dirname(__FILE__))
      set :views, File.expand_path("../", File.dirname(__FILE__)) + '/lib/views'
      set :scss, { :load_paths => [ "public/sass" ] }
+	 set :environment, :production
 
 	register Sinatra::AssetPack
 	register Sinatra::CompassSupport
@@ -39,7 +40,7 @@ class Deviate < Sinatra::Application
 	      '/css/foundation.css',
 	      '/css/main.css',
 	      '/css/footnote-button.css',
-        '/css/themes/solarized-light.css'
+        #'/css/themes/solarized-light.css'
 	    ]
 
 	    js_compression  :uglify    # :jsmin | :yui | :closure | :uglify
@@ -107,3 +108,4 @@ class Deviate < Sinatra::Application
 	end
 
 end
+
