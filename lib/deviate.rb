@@ -21,7 +21,6 @@ class Deviate < Sinatra::Application
 	  assets do
 	    serve '/js',     from: 'public/js'        # Default
 	    serve '/css',    from: 'public/sass'       # Default
-	    serve '/css/themes',    from: 'public/sass/themes'       # Default
 	    serve '/images', from: 'public/images'    # Default
 	    serve '/fonts', from: 'public/fonts'    # Default
 
@@ -39,8 +38,7 @@ class Deviate < Sinatra::Application
 	      '/css/normalize.css',
 	      '/css/foundation.css',
 	      '/css/main.css',
-	      '/css/footnote-button.css',
-        #'/css/themes/solarized-light.css'
+	      '/css/footnote-button.css'
 	    ]
 
 	    js_compression  :uglify    # :jsmin | :yui | :closure | :uglify

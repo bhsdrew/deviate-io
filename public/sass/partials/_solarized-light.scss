@@ -1,18 +1,18 @@
 /**
- * Solarized Dark theme
+ * Solarized Light theme
  *
- * Adaptation of Solarized Dark from ethanschoonover.com/solarized
+ * Adaptation of Solarized Light from ethanschoonover.com/solarized
  *
  * @author Ethan Schoonover
  * @author David Litmark
  * @version 1.0.0
  */
 pre {
-    background: #002b36; /* base03 */
+    background: #fdf6e3; /* base3 */
     word-wrap: break-word;
     margin: 0px;
     padding: 10px;
-    color: #839496; /* base0 */
+    color: #657b83; /* base00 */
     font-size: 14px;
     margin-bottom: 20px;
 }
@@ -22,11 +22,11 @@ pre, code {
 }
 
 pre .comment {
-    color: #586e75; /* base01 */
+    color: #93a1a1; /* base1 */
 }
 
 pre .constant {
-    color: #839496; /* base0 */
+    color: #657b83; /* base00 */
 }
 
 pre .constant.language {
@@ -74,13 +74,13 @@ pre .support, *[data-language="c"] .function.call {
 }
 
 pre .support.method {
-    color: #839496; /* base0 */
+    color: #657b83; /* base00 */
 }
 
 pre .support.property {
-    color: #839496; /* base0 */
+    color: #657b83; /* base00 */
 }
 
 pre .variable.global, pre .variable.class, pre .variable.instance {
-    color: #839496; /* base0 */
+    color: #657b83; /* base00 */
 }
