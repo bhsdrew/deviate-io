@@ -6,5 +6,6 @@
         "month" :12,
         "day": 15,
         "author": "Andrew Fernandez",
-        "slug": "style-guide"   
+        "slug": "style-guide",
+        "draft": false   
 }

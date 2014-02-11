@@ -53,11 +53,16 @@ class Deviate < Sinatra::Application
 
 	allposts = []
 	Dir.glob("posts/*/*/*.json") do |postconfig| # note one extra "*"
-	  	allposts.push(postconfig)
+	  	  allposts.push(postconfig)  
 	end
+
 	@@thePosts = Array.new()
 	for post in allposts
-		@@thePosts.push(JSON.parse(File.read(post)))
+		thepost = JSON.parse(File.read(post))
+    if thepost['draft'] != true
+         @@thePosts.push(thepost)
+    end
+   
 
 	end
 	

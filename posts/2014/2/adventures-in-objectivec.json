@@ -3,8 +3,9 @@
         "date": "February 10th, 2014",
         "pubdate" : 20140210,
         "year" : 2014,
-        "month" :02,
+        "month" : 2,
         "day": 10,
         "author": "Andrew Fernandez",
-        "slug": "adventures-in-objectivec"
+        "slug": "adventures-in-objectivec",
+        "draft": true
 }
