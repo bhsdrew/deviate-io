@@ -11,6 +11,7 @@ require 'rdiscount'
 require 'html_truncator'
 
 require_relative 'blog_routes'
+require_relative 'post_routes'
 
 # top level class comment?
 module AF
@@ -22,6 +23,7 @@ module AF
 
     register Sinatra::AssetPack
     register Sinatra::CompassSupport
+    register AF::PostRoutes
     register AF::BlogRoutes
 
     assets do
