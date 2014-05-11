@@ -46,11 +46,6 @@ class Deviate < Sinatra::Application
 	    prebuild true
 	  end
 
-	public
-	def on_heroku?
-  		ENV['I_AM_HEROKU']
-	end
-
 	allposts = []
 	Dir.glob("posts/*/*/*.json") do |postconfig| # note one extra "*"
 	  	  allposts.push(postconfig)

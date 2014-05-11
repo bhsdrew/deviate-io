@@ -24,6 +24,16 @@ describe 'Deviate.io App' do
 		last_response.status.should be(200)
 	end
 
+  it "should GET '/me'" do
+    get '/me'
+    last_response.status.should be(200)
+  end
+
+  it "should GET '/site'" do
+    get '/site'
+    last_response.status.should be(200)
+  end
+
 	it "should GET '/projects'" do
 		get '/projects'
 		last_response.status.should be(200)
