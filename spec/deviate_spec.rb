@@ -1,3 +1,6 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+ENV['CODECLIMATE_REPO_TOKEN'] = '289c91810447892a6ce9ae6d8814eac5391f35e75cc911c33914cb83504b050a'
 ENV['RACK_ENV'] = 'test'
 
 require 'deviate'
@@ -39,5 +42,5 @@ describe 'Deviate.io App' do
     get '/post/2013/12/first-post'
     last_response.status.should be(200)
   end
-	
+
 end

@@ -43,7 +43,7 @@ class Deviate < Sinatra::Application
 
 	    js_compression  :uglify    # :jsmin | :yui | :closure | :uglify
 	    css_compression :sass   # :simple | :sass | :yui | :sqwish
-	    prebuild true 
+	    prebuild true
 	  end
 
 	public
@@ -53,7 +53,7 @@ class Deviate < Sinatra::Application
 
 	allposts = []
 	Dir.glob("posts/*/*/*.json") do |postconfig| # note one extra "*"
-	  	  allposts.push(postconfig)  
+	  	  allposts.push(postconfig)
 	end
 
 	@@thePosts = Array.new()
@@ -62,14 +62,15 @@ class Deviate < Sinatra::Application
     if thepost['draft'] != true
          @@thePosts.push(thepost)
     end
-   
+
 
 	end
-	
+
 	#single post route
 	get '/post/:year/:month/:slug' do
-		config = File.read("posts/#{params[:year]}/#{params[:month]}/#{params[:slug]}.json")
-		content = File.read("posts/#{params[:year]}/#{params[:month]}/#{params[:slug]}.markdown")
+    route = "#{params[:year]}/#{params[:month]}/#{params[:slug]}"
+		config = File.read("posts/#{route}.json")
+		content = File.read("posts/#{route}.markdown")
 		post = {
 			:post => JSON.parse(config),
 			:content => RDiscount.new(content).to_html
@@ -106,7 +107,7 @@ class Deviate < Sinatra::Application
 		erb :about, :layout => :layout
 	end
 
-	get '/site' do 
+	get '/site' do
 		ENV['I_AM_HEROKU']
 	end
 

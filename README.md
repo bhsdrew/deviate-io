@@ -1,5 +1,6 @@
 deviate-io
 ==========
+[![Code Climate](https://codeclimate.com/github/bhsdrew/deviate-io.png)](https://codeclimate.com/github/bhsdrew/deviate-io)
 
 Self releasing static blogging tool
 
