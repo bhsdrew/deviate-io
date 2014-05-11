@@ -10,107 +10,64 @@ require 'json'
 require 'rdiscount'
 require 'html_truncator'
 
+require_relative 'blog_routes'
+
 # top level class comment?
-class Deviate < Sinatra::Application
-  set :root, File.expand_path('../', File.dirname(__FILE__))
-  set :views, File.expand_path('../', File.dirname(__FILE__)) + '/lib/views'
-  set :scss, load_paths: ['public/sass']
-  set :environment, :production
+module AF
+  class Deviate < Sinatra::Application
+    set :root, File.expand_path('../', File.dirname(__FILE__))
+    set :views, File.expand_path('../', File.dirname(__FILE__)) + '/lib/views'
+    set :scss, load_paths: ['public/sass']
+    set :environment, :production
 
-  register Sinatra::AssetPack
-  register Sinatra::CompassSupport
+    register Sinatra::AssetPack
+    register Sinatra::CompassSupport
+    register AF::BlogRoutes
 
-  assets do
-    serve '/js',     from: 'public/js'  # Default
-    serve '/css',    from: 'public/sass'       # Default
-    serve '/images', from: 'public/images'    # Default
-    serve '/fonts', from: 'public/fonts'    # Default
+    assets do
+      serve '/js',     from: 'public/js'  # Default
+      serve '/css',    from: 'public/sass'       # Default
+      serve '/images', from: 'public/images'    # Default
+      serve '/fonts', from: 'public/fonts'    # Default
 
-    # The second parameter defines where the compressed version will be served.
-    # (Note: that parameter is optional, AssetPack will figure it out.)
-    js :main, '/js/deviate.js', [
-      '/js/vendor/foundation/foundation.js',
-      '/js/vendor/bigfoot.js',
-      '/js/vendor/rainbow.js',
-      '/js/vendor/language/*',
-      '/js/main.js'
-    ]
+      # The second parameter defines where the compressed version will be served.
+      # (Note: that parameter is optional, AssetPack will figure it out.)
+      js :main, '/js/deviate.js', [
+        '/js/vendor/foundation/foundation.js',
+        '/js/vendor/bigfoot.js',
+        '/js/vendor/rainbow.js',
+        '/js/vendor/language/*',
+        '/js/main.js'
+      ]
 
-    css :main, '/css/deviate.css', [
-      '/css/normalize.css',
-      '/css/foundation.css',
-      '/css/main.css',
-      '/css/footnote-button.css'
-    ]
+      css :main, '/css/deviate.css', [
+        '/css/normalize.css',
+        '/css/foundation.css',
+        '/css/main.css',
+        '/css/footnote-button.css'
+      ]
 
-    js_compression :uglify    # :jsmin | :yui | :closure | :uglify
-    css_compression :sass   # :simple | :sass | :yui | :sqwish
-    prebuild true
-  end
-
-  def all_posts
-    posts = []
-    Dir.glob('posts/*/*/*.json') do |postconfig| # note one extra "*"
-      posts.push(postconfig)
+      js_compression :uglify    # :jsmin | :yui | :closure | :uglify
+      css_compression :sass   # :simple | :sass | :yui | :sqwish
+      prebuild true
     end
-    posts
-  end
 
-  def ready_posts
-    the_posts = []
-    posts = all_posts
-    posts.each do |post|
-      the_post = JSON.parse(File.read(post))
-      the_posts.push(the_post) if the_post['draft'] != true
+    def all_posts
+      posts = []
+      Dir.glob('posts/*/*/*.json') do |postconfig| # note one extra "*"
+        posts.push(postconfig)
+      end
+      posts
     end
-    the_posts
-  end
 
-  # single post route
-  get '/post/:year/:month/:slug' do
-    route = "#{params[:year]}/#{params[:month]}/#{params[:slug]}"
-    config = File.read("posts/#{route}.json")
-    content = File.read("posts/#{route}.markdown")
-    post = {
-      post: JSON.parse(config),
-      content: RDiscount.new(content).to_html
-    }
-    erb :post , layout: :layout, locals: post
-  end
-
-  # helper route for listing out all articles
-  get '/archive' do
-    posts = ready_posts
-    sorted = posts.sort_by { |k| k['pubdate'] }.reverse
-    content = { posts: sorted }
-    erb :archive, layout: :layout, locals: content
-  end
-
-  # home route
-  get '/' do
-    posts = ready_posts
-    sorted = posts.sort_by { |k| k['pubdate'] }.reverse
-    path = "#{sorted[0]['year']}/#{sorted[0]['month']}/#{sorted[0]['slug']}"
-    content = File.read("posts/#{path}.markdown")
-    post = {
-      post: sorted[0],
-      content: HTML_Truncator.truncate(RDiscount.new(content).to_html, 50)
-    }
-    config = { title: 'Self deploying blog',
-               recentPost: post }
-
-    erb :index , layout: :layout, locals: config
-  end
-
-  get '/projects' do
-    erb :projects, layout: :layout
-  end
-
-  get '/me' do
-    erb :about, layout: :layout
-  end
-
-  get '/site' do
-    ENV['I_AM_HEROKU']
+    def ready_posts
+      the_posts = []
+      posts = all_posts
+      posts.each do |post|
+        the_post = JSON.parse(File.read(post))
+        the_posts.push(the_post) if the_post['draft'] != true
+      end
+      the_posts
+    end
   end
 end

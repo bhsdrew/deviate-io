@@ -12,7 +12,7 @@ describe 'Deviate.io App' do
   include Rack::Test::Methods
 
   def app
-    Deviate
+    AF::Deviate
   end
 
   it "should GET '/'" do
