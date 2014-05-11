@@ -46,20 +46,25 @@ class Deviate < Sinatra::Application
 	    prebuild true
 	  end
 
-	allposts = []
-	Dir.glob("posts/*/*/*.json") do |postconfig| # note one extra "*"
-	  	  allposts.push(postconfig)
-	end
-
-	@@thePosts = Array.new()
-	for post in allposts
-		thepost = JSON.parse(File.read(post))
-    if thepost['draft'] != true
-         @@thePosts.push(thepost)
+  def allPosts
+    allposts = []
+    Dir.glob("posts/*/*/*.json") do |postconfig| # note one extra "*"
+          allposts.push(postconfig)
     end
+    allposts
+  end
 
-
-	end
+  def readyPosts
+    thePosts = Array.new()
+    posts = allPosts
+    for post in posts
+      thepost = JSON.parse(File.read(post))
+      if thepost['draft'] != true
+           thePosts.push(thepost)
+      end
+    end
+    thePosts
+  end
 
 	#single post route
 	get '/post/:year/:month/:slug' do
@@ -75,14 +80,16 @@ class Deviate < Sinatra::Application
 
 	#helper route for listing out all articles
 	get '/archive' do
-		sorted = @@thePosts.sort_by { |k| k["pubdate"] }.reverse
+    posts = readyPosts
+		sorted = posts.sort_by { |k| k["pubdate"] }.reverse
 		content = {:posts => sorted}
 		erb :archive, :layout => :layout, locals: content
 	end
 
 	#home route
 	get '/' do
-		sorted = @@thePosts.sort_by { |k| k["pubdate"] }.reverse
+    posts = readyPosts
+		sorted = posts.sort_by { |k| k["pubdate"] }.reverse
 		content = File.read("posts/#{sorted[0]['year']}/#{sorted[0]['month']}/#{sorted[0]['slug']}.markdown")
 		post = {
 			:post => sorted[0],
