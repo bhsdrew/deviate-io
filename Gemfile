@@ -13,3 +13,4 @@ gem 'rdiscount'
 gem 'json'
 gem "html_truncator", "~>0.2"
 gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'rubocop', require: false
