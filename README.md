@@ -18,6 +18,3 @@ Features:
 *Generate erb templates from markdown files using caching
 *dynamic routing should be based off of those erb templates
 
-
-
-
